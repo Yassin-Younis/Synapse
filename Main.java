@@ -1,26 +1,28 @@
 public class Main {
     public static void main(String[] args) {
 
-        int[] noOfHidden = {1};
+        int[] noOfHidden = {5};
 
         Network test = new Network(1, 1);
 
-        double[] values = {1};
+        double[] values = {5};
         
         test.initInput(values);
 
-        double[] targets = {0.2};
+        double[] targets = {0.5};
 
         test.setTargets(targets);
-
-        test.testNetwork();
-
         test.setLearingRate(0.5);
+        test.calculateValues();
 
-        for (int i=0; i<10; i++) {
+
+        test.toString();
+
+        for (int i=0; i<10000; i++) {
             test.train();
-            test.testNetwork();
         }
+        test.toString();
+        System.out.println("DONEEEE");
 
 
 

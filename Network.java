@@ -26,6 +26,7 @@ public class Network {
         this.noOfInputNeurons = noOfInputNeurons;
         inputLayer = new Neuron[noOfInputNeurons];
 
+        this.noOfHiddenLayersNeurons = noOfHiddenLayersNeurons;
         this.noOfHiddenLayers = noOfHiddenLayersNeurons.length;
         hiddenLayers = new Neuron[noOfHiddenLayers][];
         for (int i=0; i<noOfHiddenLayers; i++) {
@@ -37,6 +38,10 @@ public class Network {
         errorValues = new double[noOfPossibleOutputs];
     }
 
+    /** 
+     * @param noOfInputNeurons the requested number of input neurons.
+     * @param noOfPossibleOutputs the number of outputs to choose from.
+     **/
     public Network(int noOfInputNeurons, int noOfPossibleOutputs) {
 
         this.noOfInputNeurons = noOfInputNeurons;
@@ -109,7 +114,7 @@ public class Network {
     }
 
     // must call initInput with valid inputs  for this to work.
-    public void testNetwork() {
+    public void calculateValues() {
         for (int i=0; i<noOfHiddenLayers; i++) {
             for (int j=0; j<hiddenLayers[i].length; j++) {
                 hiddenLayers[i][j].calculateValue();
@@ -119,7 +124,6 @@ public class Network {
             outputLayer[i].calculateValue();
         }
         calculateErrors();
-        toString();
     }
 
     public void calculateErrors() {
@@ -131,18 +135,24 @@ public class Network {
 
     public void train() {
         
+        calculateValues();
         for (int i=0; i<noOfOutputNeurons; i++) {
             double dEdY = -2*(targetValues[i]-outputLayer[i].getValue());
             pushLearn(outputLayer[i], dEdY);
         }
+        
     }
 
     public void pushLearn(Neuron NRN, double chainRuleProduct) {
 
         if (NRN.isInput()) return; //end condition, recursive end.
 
+        double dSegmoid = NRN.getValue()*(1-NRN.getValue()); //sigmoid derivative
+        chainRuleProduct*=dSegmoid;
+
+
         double currentBias = NRN.getBias();
-        NRN.setBias(currentBias-learingRate*chainRuleProduct);
+        NRN.setBias(currentBias-(learingRate*chainRuleProduct));
 
         Neuron[] inputLayer = NRN.getInputNeurons();
         double[] currentWeights = NRN.getRespectiveWeights();
