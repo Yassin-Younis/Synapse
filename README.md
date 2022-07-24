@@ -1,10 +1,11 @@
 <img src="https://github.com/Yassin-Younis/Synapse/blob/main/synapse.png?raw=true" alt="drawing" width="700"/>
 
 A very simple Open-source JAVA-powered machine learning library for absolute beginners and students.
-## Features
+## About the networks
 
 - Full ability to choose and customize number of Neurons.
 - Really simple and elegant code fit for begginers.
+- Uses Sigmoid as activation function.
 
 ## Installation
 
