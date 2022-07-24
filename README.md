@@ -8,18 +8,18 @@ A very simple Open-source JAVA-powered machine learning library for absolute beg
 
 ## Installation
 
-All you need is [VSCODE](https://code.visualstudio.com/) and ofcourse the [JDK](https://www.oracle.com/java/technologies/downloads/) to run the network.
+All you need is [VSCODE](https://code.visualstudio.com/) and of course, the [JDK](https://www.oracle.com/java/technologies/downloads/) to run the network.
 
 ## How it works
 
-First, initialise the Network. In this example we initialise a network with 1 input neuron and 1 output neuron.
+First, initialize the Network. In this example, we initialize a network with 1 input neuron and 1 output neuron.
 
 ```sh
 Network synapse = new Network(1, 1);
 ```
-Now for a network with hidden layers it's a bit less elegant:
+Now for a network with hidden layers, it's a bit less elegant:
 
-We need to initialise an integer array with the number of neurons you want each hidden layer to have.
+We need to initialize an integer array with the number of neurons you want each hidden layer to have.
 
 ```sh
 int[] hiddenLayerVals = {5};
@@ -27,7 +27,7 @@ int[] hiddenLayerVals = {5};
 ```sh
 Network synapse = new Network(4, hiddenLayerVals, 1);
 ```
-Below is a visual of the network we just inisitalised:
+Below is a visual of the network we just initialized:
 
 <img src="https://github.com/Yassin-Younis/Synapse/blob/main/Schema-of-an-artificial-neural-network-Image-Source-10.png?raw=true" alt="drawing" width="700"/>
 
@@ -36,7 +36,7 @@ Now create a <ins>double</ins> array with your input values and pass it to the <
 ```sh
 double[] values = {1, 23, 0.7, -5};
 ```
-> Note: Make sure values.length is equal to the number of initialised input neurons.
+> Note: Make sure values.length is equal to the number of initialized input neurons.
 
 ```sh
 synapse.initInput(values);
@@ -134,5 +134,5 @@ Training can be achieved by the simplest command yet:
 ```sh
 synapse.train();
 ```
-Running the method above adjusts out parameters to satisfy out output.
+Running the method above adjusts our parameters to satisfy our output.
 > Note: Make sure you change inputs and outputs after every train method call.
